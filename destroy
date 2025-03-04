@@ -1,0 +1,14 @@
+steps:
+  - label: ":Missile: Delete ephemeral infra"
+    command: |
+      # Extract the full branch name from the merge message
+      SOURCE_BRANCH=$(echo "$BUILDKITE_MESSAGE" | grep -oP 'from \K[^ ]+')
+      
+      # Extract the deployment target (everything after deploy/)
+      DEPLOY_TARGET=${SOURCE_BRANCH#*deploy/}
+      
+      echo "Deploying to: $DEPLOY_TARGET"
+      ./deploy.sh "$DEPLOY_TARGET"
+    if: |
+      build.pull_request.id == null && 
+      build.message =~ /Merge pull request #\\d+ from .+?deploy\\//
