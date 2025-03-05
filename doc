@@ -1,0 +1,11 @@
+Web ACL Capacity Units (WCUs) Exceeding Default Allocation
+A frequently overlooked cost factor is Web ACL Capacity Units (WCUs). AWS WAF provides a default allocation of 1500 WCUs, but charges an additional $0.20 per million requests for each 500 WCUs used beyond this limit1. More complex rules and rule groups consume more WCUs, meaning that even with fewer requests, you could be paying more if your rules became more sophisticated.
+
+Advanced Inspection Features
+If you've enabled advanced inspection features, these can trigger additional charges:
+
+Body inspection beyond the default limit costs an additional $0.30 per million requests for each additional 16KB analyzed1
+
+CAPTCHA actions cost $0.40 per thousand attempts10
+
+Challenge actions incur charges based on responses served
